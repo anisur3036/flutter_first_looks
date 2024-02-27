@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_first_looks/utils/app_styles.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,7 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFeeedf2),
+      backgroundColor: Styles.bgColor,
       body: ListView(
         children: [
           Container(
@@ -16,19 +17,12 @@ class HomePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Good morning',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text(
-                          'Book Tickets',
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        Text('Good morning', style: Styles.heading_3),
+                        const SizedBox(height: 3),
+                        Text('Book Tickets', style: Styles.heading_1),
                       ],
                     ),
                     Container(
@@ -43,7 +37,19 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 20),
+                const TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    prefixIcon: Icon(Icons.search),
+                    hintText: 'Search...',
+                  ),
+                ),
               ],
             ),
           )

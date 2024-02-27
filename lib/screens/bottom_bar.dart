@@ -10,7 +10,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _seletedIndex = 1;
+  int _seletedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const Text("Search"),
@@ -27,44 +27,38 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Android First Looks'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
       body: Center(
         child: _widgetOptions[_seletedIndex],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        currentIndex: _seletedIndex,
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: _onItemTapped,
+        selectedIndex: _seletedIndex,
         elevation: 10,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: Colors.blueGrey,
-        unselectedItemColor: Colors.grey[400],
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
+        destinations: const <Widget>[
+          NavigationDestination(
             icon: Icon(FluentSystemIcons.ic_fluent_home_regular),
-            activeIcon: Icon(FluentSystemIcons.ic_fluent_home_filled),
+            selectedIcon: Icon(FluentSystemIcons.ic_fluent_home_filled),
             tooltip: "Home",
             label: "Home",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(FluentSystemIcons.ic_fluent_search_regular),
-            activeIcon: Icon(FluentSystemIcons.ic_fluent_search_filled),
+            selectedIcon: Icon(FluentSystemIcons.ic_fluent_search_filled),
             tooltip: "Search",
             label: "Search",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(FluentSystemIcons.ic_fluent_ticket_regular),
-            activeIcon: Icon(FluentSystemIcons.ic_fluent_ticket_filled),
+            selectedIcon: Icon(FluentSystemIcons.ic_fluent_ticket_filled),
             tooltip: "Ticket",
             label: "Ticket",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(FluentSystemIcons.ic_fluent_person_regular),
-            activeIcon: Icon(FluentSystemIcons.ic_fluent_person_filled),
+          NavigationDestination(
+            icon: Badge(
+              label: Text('2'),
+              child: Icon(FluentSystemIcons.ic_fluent_person_regular),
+            ),
+            selectedIcon: Icon(FluentSystemIcons.ic_fluent_person_filled),
             tooltip: "Profile",
             label: "Profile",
           ),
